@@ -47,7 +47,7 @@ public class ShelterServiceImpl implements ShelterService {
     public ShelterDTO addShelter(CreateShelterDTO createShelterDTO) {
         Shelter shelter = ShelterMapper.INSTANCE.CreateShelterDTOToShelter(createShelterDTO);
         try {
-            shelterRepository.save(shelter);
+            shelterRepository.saveAndFlush(shelter);
             return ShelterMapper.INSTANCE.ShelterToShelterDTO(shelter);
         } catch (DataIntegrityViolationException e){
             throw new ResourceAlreadyExistsException("This shelter already exists");
